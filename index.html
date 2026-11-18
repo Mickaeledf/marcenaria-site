@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO (valores dinâmicos via config.js) -->
+    <title>[NOME DA MARCA] — Marcenaria Sob Medida & Móveis Planejados</title>
+    <meta name="description" content="Projetos de móveis planejados, marcenaria sob medida e ambientes personalizados com alto padrão de acabamento.">
+    <meta name="keywords" content="móveis planejados, marcenaria sob medida, cozinhas planejadas, closets">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#FAF9F6',
+                            100: '#F2EFE9',
+                            200: '#E5E0D8',
+                            300: '#D1C9BD',
+                            800: '#2C2A27',
+                            900: '#1C1B19',
+                        },
+                        wood: {
+                            DEFAULT: '#8C6D53',
+                            dark: '#5E4735',
+                            light: '#B59B84'
+                        },
+                        olive: {
+                            DEFAULT: '#4A5240',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="selection:bg-wood selection:text-white flex flex-col min-h-screen">
+
+    <!-- ═══════════════════════════════════════════════════════
+         HEADER
+    ═══════════════════════════════════════════════════════ -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-stone-50/90 backdrop-blur-md border-b editorial-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="#inicio" onclick="switchPage('home')" class="flex items-center gap-3 group focus:outline-none" aria-label="Página inicial">
+                    <div class="w-9 h-9 border border-stone-900 flex items-center justify-center rounded-sm transition-colors group-hover:bg-stone-900 group-hover:text-stone-50">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="1"/>
+                            <line x1="9" y1="3" x2="9" y2="21"/>
+                            <line x1="9" y1="12" x2="21" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl sm:text-2xl tracking-wide font-medium text-stone-900 leading-none" data-cfg="marca">
+                            [NOME DA MARCA]
+                        </span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-stone-500 mt-1" data-cfg="subtitulo">
+                            Marcenaria Sob Medida
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Nav Desktop -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-normal text-stone-700" aria-label="Menu principal">
+                    <a href="#sobre" onclick="navigateToSection('sobre')" class="hover:text-wood transition-colors py-2">A Empresa</a>
+                    <a href="#ambientes" onclick="navigateToSection('ambientes')" class="hover:text-wood transition-colors py-2">Ambientes</a>
+                    <a href="#portfolio" onclick="navigateToSection('portfolio')" class="hover:text-wood transition-colors py-2">Portfólio</a>
+                    <a href="#materiais" onclick="navigateToSection('materiais')" class="hover:text-wood transition-colors py-2">Materiais</a>
+                    <a href="#processo" onclick="navigateToSection('processo')" class="hover:text-wood transition-colors py-2">Como Funciona</a>
+                    <button onclick="switchPage('catalog')" id="nav-page2-btn" class="hover:text-wood transition-colors py-2 flex items-center gap-1.5 border-l editorial-border pl-6">
+                        <span>Projetos & Inspirações</span>
+                    </button>
+                </nav>
+
+                <!-- CTA + Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <a href="#orcamento" onclick="navigateToSection('orcamento')" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs uppercase tracking-widest font-medium border border-stone-900 text-stone-900 rounded-sm hover:bg-stone-900 hover:text-stone-50 transition-colors">
+                        Solicitar Orçamento
+                    </a>
+                    <button id="mobile-menu-btn" type="button" class="lg:hidden p-2.5 text-stone-900 hover:bg-stone-200/60 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-stone-50 border-b editorial-border px-6 pt-4 pb-8 space-y-4">
+            <nav class="flex flex-col space-y-3 text-base text-stone-800">
+                <a href="#sobre" onclick="mobileNav('sobre')" class="py-2 border-b border-stone-200/70">A Empresa</a>
+                <a href="#ambientes" onclick="mobileNav('ambientes')" class="py-2 border-b border-stone-200/70">Ambientes e Soluções</a>
+                <a href="#portfolio" onclick="mobileNav('portfolio')" class="py-2 border-b border-stone-200/70">Portfólio</a>
+                <a href="#materiais" onclick="mobileNav('materiais')" class="py-2 border-b border-stone-200/70">Materiais e Acabamentos</a>
+                <a href="#processo" onclick="mobileNav('processo')" class="py-2 border-b border-stone-200/70">Como Funciona</a>
+                <button onclick="switchPage('catalog'); toggleMobileMenu(false);" class="text-left py-2 border-b border-stone-200/70 font-medium text-wood">
+                    Projetos & Inspirações →
+                </button>
+            </nav>
+            <div class="pt-2">
+                <a href="#orcamento" onclick="mobileNav('orcamento')" class="block w-full text-center px-5 py-3.5 text-xs uppercase tracking-widest font-medium bg-stone-900 text-stone-50 rounded-sm">
+                    Solicitar Orçamento
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PÁGINA 1 — INSTITUCIONAL
+    ═══════════════════════════════════════════════════════ -->
+    <main id="page-home" class="flex-grow pt-20">
+
+        <!-- HERO -->
+        <section id="inicio" class="relative bg-stone-50 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 lg:py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-6">
+                        <p class="text-xs uppercase tracking-[0.22em] text-wood font-medium">
+                            <span data-cfg="marca">[NOME DA MARCA]</span> • Projetos sob medida
+                        </p>
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-[54px] font-normal text-stone-900 leading-[1.12] tracking-tight">
+                            Marcenaria precisa para ambientes com identidade.
+                        </h1>
+                        <p class="text-stone-600 text-base sm:text-lg font-light leading-relaxed">
+                            Desenvolvemos móveis planejados e soluções de marcenaria sob medida com foco em funcionalidade, rigor técnico e acabamento refinado para projetos residenciais e corporativos.
+                        </p>
+                        <div class="pt-4 flex flex-col sm:flex-row gap-3.5">
+                            <a href="#portfolio" class="inline-flex items-center justify-center px-6 py-3.5 text-xs uppercase tracking-widest font-medium bg-stone-900 text-stone-50 rounded-sm hover:bg-stone-800 transition-colors">
+                                Conhecer Projetos
+                            </a>
+                            <a data-cfg-href="whatsappOrcamento" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs uppercase tracking-widest font-medium border border-stone-300 text-stone-900 rounded-sm hover:border-stone-900 transition-colors">
+                                <svg class="w-4 h-4 text-olive" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+                                Orçamento via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <figure class="relative rounded-sm overflow-hidden bg-stone-200 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85" alt="Ambiente integrado com marcenaria sob medida" class="w-full h-[360px] sm:h-[480px] lg:h-[560px] object-cover">
+                            <figcaption class="bg-stone-100/95 backdrop-blur-sm px-4 py-2.5 text-[11px] text-stone-500 flex justify-between items-center border-t editorial-border">
+                                <span>Imagem de referência visual • Ambiente integrado em lâmina natural</span>
+                                <span class="hidden sm:inline">[Substituir por foto oficial]</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre" class="py-20 lg:py-28 bg-stone-50 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    <div class="lg:col-span-5 space-y-4 reveal">
+                        <span class="text-xs uppercase tracking-[0.2em] text-wood block">Sobre a Empresa</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900 leading-tight">
+                            Compromisso com o rigor construtivo e o atendimento próximo.
+                        </h2>
+                        <div class="pt-4">
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80" alt="Detalhe de acabamento em marcenaria planejada" class="w-full h-72 object-cover rounded-sm" loading="lazy">
+                            <p class="text-[11px] text-stone-500 mt-2">Referência ilustrativa • Substituir por imagem da fábrica ou equipe.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-6 text-stone-700 font-light leading-relaxed text-base reveal">
+                        <p>
+                            A <strong class="font-medium text-stone-900" data-cfg="marca">[NOME DA MARCA]</strong> atua no desenvolvimento e execução de móveis planejados e marcenaria sob medida, atendendo clientes finais, arquitetos e designers de interiores em <strong class="font-medium text-stone-900" data-cfg="cidadeRegiao">[CIDADE / REGIÃO]</strong>.
+                        </p>
+                        <p data-cfg="sobreTexto1">
+                            Nossa filosofia de trabalho parte da escuta atenta das necessidades de cada cliente e da análise técnica de cada espaço.
+                        </p>
+                        <p>
+                            <span class="bg-stone-200/70 px-1.5 py-0.5 text-stone-800 text-sm rounded-sm" data-cfg="sobreTexto2">[INSERIR: Parágrafo sobre fundação da empresa, anos de atuação ou estrutura própria.]</span>
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t editorial-border">
+                            <div>
+                                <h3 class="font-serif text-xl text-stone-900 mb-1.5">Desenvolvimento Técnico</h3>
+                                <p class="text-sm text-stone-600">Detalhamento minucioso antes da produção, garantindo compatibilidade com pontos elétricos, hidráulicos e iluminação.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl text-stone-900 mb-1.5">Acabamento e Montagem</h3>
+                                <p class="text-sm text-stone-600">Seleção criteriosa de chapas, fitas de borda e ferragens, aliada a uma instalação limpa e supervisionada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AMBIENTES -->
+        <section id="ambientes" class="py-20 lg:py-28 bg-stone-100/60 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="max-w-2xl mb-14 reveal">
+                    <span class="text-xs uppercase tracking-[0.2em] text-wood block mb-3">Soluções Sob Medida</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900">Ambientes projetados para a rotina real</h2>
+                    <p class="text-stone-600 font-light mt-3">Desenvolvemos mobiliário completo para áreas residenciais e profissionais, adaptando dimensões, divisões internas e acabamentos a cada necessidade.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" alt="Cozinha planejada" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Cozinhas Planejadas</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Ergonomia no fluxo de preparo, ferragens de amortecimento e aproveitamento vertical com resistência à umidade.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Cozinhas')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80" alt="Closet planejado" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Quartos e Closets</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Organização interna personalizada, cabeceiras ripadas ou estofadas, portas de correr e iluminação integrada.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Quartos e Closets')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Sala de estar planejada" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Salas de Estar</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Painéis arquitetônicos, racks suspensos, estantes e passagem oculta de fiação para integração limpa.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Salas')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80" alt="Home office planejado" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Home Offices</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Bancadas ergonômicas, gerenciamento discreto de cabos e armários para documentação e livros.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Home Office')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Banheiro planejado" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Banheiros</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Gabinetes suspensos e espelheiras desenvolvidos com materiais adequados para áreas úmidas.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <a href="#orcamento" class="text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 inline-flex items-center gap-2 transition-colors">
+                                <span>Consultar projeto</span><span>→</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80" alt="Lavanderia organizada" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Lavanderias</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Soluções funcionais para áreas compactas, incluindo tulhas embutidas e armários para utensílios.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <a href="#orcamento" class="text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 inline-flex items-center gap-2 transition-colors">
+                                <span>Consultar projeto</span><span>→</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Espaço comercial" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Espaços Comerciais</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Expositores, balcões de atendimento e mobiliário para lojas, clínicas e consultórios.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Comercial e Corporativo')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="group flex flex-col justify-between bg-stone-50 border editorial-border rounded-sm overflow-hidden reveal">
+                        <div>
+                            <div class="image-zoom-container h-56 bg-stone-200">
+                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Ambiente corporativo" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-2xl text-stone-900 mb-2">Ambientes Corporativos</h3>
+                                <p class="text-sm text-stone-600 font-light leading-relaxed">Estações de trabalho, mesas de reunião e recepções alinhadas à identidade visual da empresa.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button onclick="filterAndGoToPortfolio('Comercial e Corporativo')" class="text-xs uppercase tracking-widest font-medium text-stone-900 hover:text-wood inline-flex items-center gap-2 transition-colors">
+                                <span>Ver no portfólio</span><span>→</span>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFÓLIO -->
+        <section id="portfolio" class="py-20 lg:py-28 bg-stone-50 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-wood block mb-3">Portfólio & Referências</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-stone-900">Projetos e composições</h2>
+                    </div>
+                    <div class="bg-stone-100 border editorial-border px-4 py-3 rounded-sm max-w-md">
+                        <p class="text-xs text-stone-600 leading-relaxed">
+                            <strong class="font-medium text-stone-800">Nota de transparência:</strong> Imagens de referência visual licenciadas, aguardando substituição pelas fotografias oficiais dos projetos executados.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-10 border-b editorial-border" role="tablist" aria-label="Filtrar portfólio">
+                    <button onclick="filterPortfolio('Todos')" data-filter="Todos" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium bg-stone-900 text-stone-50 rounded-sm whitespace-nowrap transition-colors">Todos</button>
+                    <button onclick="filterPortfolio('Cozinhas')" data-filter="Cozinhas" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap transition-colors">Cozinhas</button>
+                    <button onclick="filterPortfolio('Quartos e Closets')" data-filter="Quartos e Closets" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap transition-colors">Quartos e Closets</button>
+                    <button onclick="filterPortfolio('Salas')" data-filter="Salas" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap transition-colors">Salas</button>
+                    <button onclick="filterPortfolio('Home Office')" data-filter="Home Office" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap transition-colors">Home Office</button>
+                    <button onclick="filterPortfolio('Comercial e Corporativo')" data-filter="Comercial e Corporativo" class="portfolio-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap transition-colors">Comercial e Corporativo</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12"></div>
+
+                <div class="mt-16 pt-10 border-t editorial-border flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <p class="text-stone-600 font-light text-sm sm:text-base">Deseja explorar mais detalhes técnicos, inspirações e atualizações recentes?</p>
+                    <button onclick="switchPage('catalog')" class="inline-flex items-center gap-3 px-6 py-3.5 text-xs uppercase tracking-widest font-medium border border-stone-900 text-stone-900 rounded-sm hover:bg-stone-900 hover:text-stone-50 transition-colors">
+                        <span>Acessar Projetos & Inspirações</span><span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATERIAIS -->
+        <section id="materiais" class="py-20 lg:py-28 bg-stone-900 text-stone-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-5 space-y-5 reveal">
+                        <span class="text-xs uppercase tracking-[0.2em] text-wood-light block">Especificações</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-50 leading-tight">Materiais, texturas e ferragens selecionadas</h2>
+                        <p class="text-stone-300 font-light leading-relaxed">A durabilidade e a estética dependem da escolha correta dos componentes. Trabalhamos com linhas reconhecidas, oferecendo amostras físicas no atendimento.</p>
+                        <p class="text-xs text-stone-400 italic">* Disponibilidade sujeita ao catálogo vigente dos fornecedores parceiros.</p>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="border border-stone-800 bg-stone-800/40 p-6 rounded-sm reveal">
+                            <div class="h-36 mb-4 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" alt="MDF amadeirado" class="w-full h-full object-cover" loading="lazy"></div>
+                            <h3 class="font-serif text-xl text-stone-50 mb-1.5">Padrões Amadeirados e MDF</h3>
+                            <p class="text-sm text-stone-300 font-light leading-relaxed">Chapas de MDF de alta densidade com revestimentos melamínicos que reproduzem veios naturais.</p>
+                        </div>
+                        <div class="border border-stone-800 bg-stone-800/40 p-6 rounded-sm reveal">
+                            <div class="h-36 mb-4 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Acabamento fosco" class="w-full h-full object-cover" loading="lazy"></div>
+                            <h3 class="font-serif text-xl text-stone-50 mb-1.5">Acabamentos Foscos e Unicolores</h3>
+                            <p class="text-sm text-stone-300 font-light leading-relaxed">Superfícies acetinadas e foscas em tons neutros, terrosos e grafite, resistentes a marcas de toque.</p>
+                        </div>
+                        <div class="border border-stone-800 bg-stone-800/40 p-6 rounded-sm reveal">
+                            <div class="h-36 mb-4 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Ferragens de precisão" class="w-full h-full object-cover" loading="lazy"></div>
+                            <h3 class="font-serif text-xl text-stone-50 mb-1.5">Ferragens e Puxadores</h3>
+                            <p class="text-sm text-stone-300 font-light leading-relaxed">Corrediças ocultas, dobradiças com amortecimento, perfis em alumínio e puxadores usinados.</p>
+                        </div>
+                        <div class="border border-stone-800 bg-stone-800/40 p-6 rounded-sm reveal">
+                            <div class="h-36 mb-4 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&w=600&q=80" alt="Iluminação LED" class="w-full h-full object-cover" loading="lazy"></div>
+                            <h3 class="font-serif text-xl text-stone-50 mb-1.5">Iluminação e Organização</h3>
+                            <p class="text-sm text-stone-300 font-light leading-relaxed">Perfis de LED embutidos, sensores de abertura, divisores de talheres e aramados internos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESSO + DIFERENCIAIS -->
+        <section id="processo" class="py-20 lg:py-28 bg-stone-50 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="max-w-2xl mb-14 reveal">
+                    <span class="text-xs uppercase tracking-[0.2em] text-wood block mb-3">Metodologia</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900">Etapas do desenvolvimento do seu projeto</h2>
+                    <p class="text-stone-600 font-light mt-3">Fluxo estruturado para clareza em cada decisão, do primeiro contato à entrega final.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 pb-20 border-b editorial-border">
+                    <div class="space-y-2 reveal">
+                        <span class="font-serif text-3xl text-wood">01</span>
+                        <h3 class="font-medium text-stone-900 text-base">Primeiro Contato e Briefing</h3>
+                        <p class="text-sm text-stone-600 font-light leading-relaxed">Entendimento dos ambientes, estilo, rotina de uso e análise inicial de planta baixa.</p>
+                    </div>
+                    <div class="space-y-2 reveal">
+                        <span class="font-serif text-3xl text-wood">02</span>
+                        <h3 class="font-medium text-stone-900 text-base">Medição Técnica no Local</h3>
+                        <p class="text-sm text-stone-600 font-light leading-relaxed">Visita ao imóvel para conferência de medidas, prumos, pontos hidráulicos e elétricos.</p>
+                    </div>
+                    <div class="space-y-2 reveal">
+                        <span class="font-serif text-3xl text-wood">03</span>
+                        <h3 class="font-medium text-stone-900 text-base">Projeto e Orçamento</h3>
+                        <p class="text-sm text-stone-600 font-light leading-relaxed">Layout 3D, definição de materiais e ferragens, e proposta comercial transparente.</p>
+                    </div>
+                    <div class="space-y-2 reveal">
+                        <span class="font-serif text-3xl text-wood">04</span>
+                        <h3 class="font-medium text-stone-900 text-base">Fabricação e Instalação</h3>
+                        <p class="text-sm text-stone-600 font-light leading-relaxed">Produção conforme projeto executivo, montagem técnica e vistoria de entrega.</p>
+                    </div>
+                </div>
+
+                <div class="pt-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                        <div class="lg:col-span-4 reveal">
+                            <span class="text-xs uppercase tracking-[0.2em] text-wood block mb-2">Por que escolher</span>
+                            <h2 class="font-serif text-3xl font-normal text-stone-900">Diferenciais do nosso trabalho</h2>
+                        </div>
+                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                            <div class="flex items-start gap-3 reveal">
+                                <span class="w-1.5 h-1.5 rounded-full bg-wood mt-2.5 shrink-0"></span>
+                                <div>
+                                    <h4 class="font-medium text-stone-900 text-sm">Projetos 100% Personalizados</h4>
+                                    <p class="text-sm text-stone-600 font-light mt-1">Mobiliário desenhado para as dimensões do seu ambiente, sem módulos engessados.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 reveal">
+                                <span class="w-1.5 h-1.5 rounded-full bg-wood mt-2.5 shrink-0"></span>
+                                <div>
+                                    <h4 class="font-medium text-stone-900 text-sm">Aproveitamento Inteligente</h4>
+                                    <p class="text-sm text-stone-600 font-light mt-1">Soluções internas para maximizar armazenamento sem comprometer a circulação.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 reveal">
+                                <span class="w-1.5 h-1.5 rounded-full bg-wood mt-2.5 shrink-0"></span>
+                                <div>
+                                    <h4 class="font-medium text-stone-900 text-sm">Acompanhamento Próximo</h4>
+                                    <p class="text-sm text-stone-600 font-light mt-1">Comunicação direta durante todas as etapas entre cliente, arquiteto e execução.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 reveal">
+                                <span class="w-1.5 h-1.5 rounded-full bg-wood mt-2.5 shrink-0"></span>
+                                <div>
+                                    <h4 class="font-medium text-stone-900 text-sm">Instalação Cuidadosa</h4>
+                                    <p class="text-sm text-stone-600 font-light mt-1">Montagem com atenção ao nivelamento, regulagem e cuidado com o imóvel.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORÇAMENTO -->
+        <section id="orcamento" class="py-20 lg:py-28 bg-stone-100/80 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                    <div class="lg:col-span-5 space-y-6 reveal">
+                        <span class="text-xs uppercase tracking-[0.2em] text-wood block">Atendimento</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900 leading-tight">Vamos conversar sobre o seu projeto</h2>
+                        <p class="text-stone-600 font-light leading-relaxed">Preencha o formulário ou entre em contato diretamente pelos nossos canais.</p>
+                        <div class="space-y-4 pt-4 border-t editorial-border text-sm">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-stone-500 block">WhatsApp Comercial</span>
+                                <a data-cfg-href="whatsappContato" href="#" target="_blank" rel="noopener noreferrer" class="text-stone-900 font-medium hover:text-wood transition-colors" data-cfg="telefone">[+55 (00) 00000-0000]</a>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-stone-500 block">Telefone</span>
+                                <a data-cfg-href="telefone" href="#" class="text-stone-900 font-medium hover:text-wood transition-colors" data-cfg="telefone">[(00) 0000-0000]</a>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-stone-500 block">Instagram</span>
+                                <a data-cfg-href="instagram" href="#" target="_blank" rel="noopener noreferrer" class="text-stone-900 font-medium hover:text-wood transition-colors" data-cfg="instagram">[@perfil_da_empresa]</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 bg-stone-50 border editorial-border p-6 sm:p-10 rounded-sm shadow-sm reveal">
+                        <form id="quote-form" class="space-y-5" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-name" class="block text-xs uppercase tracking-wider text-stone-700 mb-2">Nome completo *</label>
+                                    <input type="text" id="client-name" name="name" required placeholder="Seu nome" class="w-full px-4 py-3 bg-white border border-stone-300 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-stone-900 transition-colors">
+                                </div>
+                                <div>
+                                    <label for="client-phone" class="block text-xs uppercase tracking-wider text-stone-700 mb-2">Telefone / WhatsApp *</label>
+                                    <input type="tel" id="client-phone" name="phone" required placeholder="(00) 00000-0000" class="w-full px-4 py-3 bg-white border border-stone-300 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-stone-900 transition-colors">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-room" class="block text-xs uppercase tracking-wider text-stone-700 mb-2">Ambiente(s) de interesse *</label>
+                                    <select id="client-room" name="room" required class="w-full px-4 py-3 bg-white border border-stone-300 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-stone-900 transition-colors">
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="Cozinha Planejada">Cozinha Planejada</option>
+                                        <option value="Quarto / Closet">Quarto / Closet</option>
+                                        <option value="Sala de Estar / Home">Sala de Estar / Home</option>
+                                        <option value="Home Office">Home Office</option>
+                                        <option value="Banheiro / Lavanderia">Banheiro / Lavanderia</option>
+                                        <option value="Imóvel Completo (Vários Ambientes)">Imóvel Completo</option>
+                                        <option value="Espaço Comercial / Corporativo">Espaço Comercial / Corporativo</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="client-city" class="block text-xs uppercase tracking-wider text-stone-700 mb-2">Cidade / Bairro *</label>
+                                    <input type="text" id="client-city" name="city" required placeholder="Ex: São Paulo - Jardins" class="w-full px-4 py-3 bg-white border border-stone-300 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-stone-900 transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="client-desc" class="block text-xs uppercase tracking-wider text-stone-700 mb-2">Breve descrição do projeto</label>
+                                <textarea id="client-desc" name="description" rows="4" placeholder="Conte sobre o que precisa, previsão de entrega ou se já possui projeto arquitetônico." class="w-full px-4 py-3 bg-white border border-stone-300 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-stone-900 transition-colors"></textarea>
+                            </div>
+                            <div id="form-feedback" class="hidden p-3.5 rounded-sm text-sm"></div>
+                            <div class="pt-2">
+                                <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs uppercase tracking-widest font-medium bg-stone-900 text-stone-50 rounded-sm hover:bg-stone-800 transition-colors">
+                                    <span>Enviar Solicitação via WhatsApp</span><span>→</span>
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-stone-500">Ao enviar, seus dados serão organizados em uma mensagem para atendimento direto com nossa equipe.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PÁGINA 2 — PROJETOS & INSPIRAÇÕES
+    ═══════════════════════════════════════════════════════ -->
+    <main id="page-catalog" class="hidden flex-grow pt-20 bg-stone-50">
+        <section class="py-14 lg:py-20 bg-stone-100/70 border-b editorial-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="max-w-2xl">
+                        <button onclick="switchPage('home')" class="text-xs uppercase tracking-widest text-wood hover:text-stone-900 mb-4 inline-flex items-center gap-2 transition-colors">
+                            <span>← Voltar para Apresentação</span>
+                        </button>
+                        <h1 class="font-serif text-4xl sm:text-5xl font-normal text-stone-900">Projetos & Inspirações</h1>
+                        <p class="text-stone-600 font-light mt-3 leading-relaxed">Acervo editorial de composições, soluções de marcenaria e estudos de interiores para inspirar o seu próximo ambiente.</p>
+                    </div>
+                    <div class="bg-stone-50 border editorial-border p-4 rounded-sm max-w-xs">
+                        <p class="text-xs text-stone-600"><strong class="text-stone-900 font-medium">Nota editorial:</strong> Publicações ilustrativas para consulta de acabamentos e futuros lançamentos.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-8 mt-8 border-t editorial-border">
+                    <button onclick="filterCatalog('Todas')" data-cat-filter="Todas" class="catalog-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium bg-stone-900 text-stone-50 rounded-sm whitespace-nowrap">Todas as Publicações</button>
+                    <button onclick="filterCatalog('Ambientes Residenciais')" data-cat-filter="Ambientes Residenciais" class="catalog-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap">Ambientes Residenciais</button>
+                    <button onclick="filterCatalog('Acabamentos & Detalhes')" data-cat-filter="Acabamentos & Detalhes" class="catalog-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap">Acabamentos & Detalhes</button>
+                    <button onclick="filterCatalog('Corporativo & Comercial')" data-cat-filter="Corporativo & Comercial" class="catalog-filter-btn px-4 py-2 text-xs uppercase tracking-widest font-medium text-stone-600 hover:text-stone-900 rounded-sm whitespace-nowrap">Corporativo & Comercial</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div id="catalog-feed" class="space-y-16 lg:space-y-24"></div>
+                <div class="mt-20 bg-stone-900 text-stone-50 p-8 sm:p-12 rounded-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-normal">Gostou de alguma composição ou acabamento?</h2>
+                        <p class="text-stone-300 font-light text-sm sm:text-base mt-1">Solicite um estudo personalizado para adaptar essas soluções ao seu espaço.</p>
+                    </div>
+                    <button onclick="navigateToSection('orcamento')" class="px-6 py-3.5 text-xs uppercase tracking-widest font-medium bg-stone-50 text-stone-900 rounded-sm hover:bg-stone-200 transition-colors shrink-0">Solicitar Orçamento</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="bg-stone-50 border-t editorial-border text-stone-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b editorial-border">
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="font-serif text-2xl text-stone-900" data-cfg="marca">[NOME DA MARCA]</div>
+                    <p class="text-sm text-stone-600 font-light leading-relaxed max-w-xs" data-cfg="descricaoBreve">Marcenaria sob medida e móveis planejados com precisão técnica.</p>
+                    <div class="pt-2 flex items-center gap-4 text-xs uppercase tracking-widest font-medium">
+                        <a data-cfg-href="instagram" href="#" target="_blank" rel="noopener noreferrer" class="text-stone-900 hover:text-wood transition-colors">Instagram</a>
+                        <span class="text-stone-300">•</span>
+                        <a data-cfg-href="whatsappFooter" href="#" target="_blank" rel="noopener noreferrer" class="text-stone-900 hover:text-wood transition-colors">WhatsApp</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-3 text-sm">
+                    <h3 class="text-xs uppercase tracking-widest font-medium text-stone-900 mb-3">Contato & Atendimento</h3>
+                    <p class="text-stone-600 font-light"><strong class="font-medium text-stone-800">Endereço:</strong> <span data-cfg="endereco">[Rua Exemplo, 000]</span></p>
+                    <p class="text-stone-600 font-light"><strong class="font-medium text-stone-800">Telefone / WhatsApp:</strong> <span data-cfg="telefone">[(00) 00000-0000]</span></p>
+                    <p class="text-stone-600 font-light"><strong class="font-medium text-stone-800">Horário:</strong> <span data-cfg="horario">[Segunda a Sexta]</span></p>
+                </div>
+                <div class="lg:col-span-4">
+                    <h3 class="text-xs uppercase tracking-widest font-medium text-stone-900 mb-3">Localização</h3>
+                    <div class="rounded-sm overflow-hidden border editorial-border bg-stone-200 h-36">
+                        <iframe id="mapa-iframe" title="Localização no Google Maps" src="" class="w-full h-full border-0 grayscale opacity-90 hover:grayscale-0 transition-all" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <a data-cfg-href="mapaLink" href="#" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 text-xs text-wood hover:underline">Abrir rota no Google Maps →</a>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-500">
+                <p>© <span id="current-year"></span> <span data-cfg="marca">[NOME DA MARCA]</span>. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-6">
+                    <button onclick="openPrivacyModal()" class="hover:text-stone-900 underline underline-offset-4">Política de Privacidade</button>
+                    <span>CNPJ: <span data-cfg="cnpj">[00.000.000/0001-00]</span></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════
+         LIGHTBOX
+    ═══════════════════════════════════════════════════════ -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-stone-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <div class="relative max-w-5xl w-full bg-stone-50 rounded-sm overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 max-h-[90vh]">
+            <button onclick="closeLightbox()" class="absolute top-3 right-3 z-10 w-10 h-10 bg-stone-900/80 text-stone-50 hover:bg-stone-900 rounded-sm flex items-center justify-center transition-colors" aria-label="Fechar">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="lg:col-span-8 bg-stone-200 flex items-center justify-center overflow-hidden">
+                <img id="lightbox-img" src="" alt="" class="w-full h-[300px] sm:h-[450px] lg:h-[600px] object-cover">
+            </div>
+            <div class="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+                <div class="space-y-4">
+                    <span id="lightbox-category" class="text-[11px] uppercase tracking-[0.2em] text-wood font-medium block"></span>
+                    <h3 id="lightbox-title" class="font-serif text-2xl sm:text-3xl text-stone-900 leading-tight"></h3>
+                    <p id="lightbox-desc" class="text-sm text-stone-600 font-light leading-relaxed"></p>
+                    <div class="pt-4 border-t editorial-border space-y-2.5 text-xs">
+                        <div>
+                            <span class="text-stone-400 uppercase tracking-wider block">Materiais & Acabamentos</span>
+                            <span id="lightbox-materials" class="text-stone-800 font-medium"></span>
+                        </div>
+                        <div>
+                            <span class="text-stone-400 uppercase tracking-wider block">Soluções Aplicadas</span>
+                            <span id="lightbox-solutions" class="text-stone-800 font-medium"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-6 mt-6 border-t editorial-border">
+                    <p class="text-[11px] text-stone-400 mb-3">* Imagem ilustrativa de referência visual.</p>
+                    <button onclick="requestSimilarProject()" class="w-full py-3 px-4 bg-stone-900 text-stone-50 text-xs uppercase tracking-widest font-medium rounded-sm hover:bg-stone-800 transition-colors">Solicitar Projeto Semelhante</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PRIVACIDADE -->
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden bg-stone-900/80 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="bg-stone-50 max-w-xl w-full p-6 sm:p-8 rounded-sm border editorial-border shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b editorial-border pb-3">
+                <h3 id="privacy-title" class="font-serif text-2xl text-stone-900">Política de Privacidade</h3>
+                <button onclick="closePrivacyModal()" class="text-stone-500 hover:text-stone-900 p-1" aria-label="Fechar">✕</button>
+            </div>
+            <div class="text-sm text-stone-600 font-light space-y-3 leading-relaxed">
+                <p>A <strong class="font-medium text-stone-900" data-cfg="marca">[NOME DA MARCA]</strong> respeita a privacidade dos visitantes e atua em conformidade com a LGPD (Lei nº 13.709/2018).</p>
+                <p><strong class="font-medium text-stone-800">Coleta e Uso de Dados:</strong> As informações fornecidas voluntariamente no formulário são utilizadas exclusivamente para atendimento comercial e elaboração de propostas técnicas.</p>
+                <p>Não compartilhamos, vendemos ou cedemos dados pessoais a terceiros para fins publicitários. Para solicitar exclusão ou atualização de informações, entre em contato pelos canais oficiais.</p>
+            </div>
+            <div class="pt-3 text-right">
+                <button onclick="closePrivacyModal()" class="px-5 py-2.5 bg-stone-900 text-stone-50 text-xs uppercase tracking-widest rounded-sm">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
